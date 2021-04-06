@@ -1,4 +1,5 @@
 class PrototypesController < ApplicationController
+  
   def index
     @prototypes = Prototype.includes(:user)
   end
@@ -30,6 +31,15 @@ class PrototypesController < ApplicationController
       redirect_to root_path
     else
      render :edit
+    end
+  end
+
+  def destroy
+    @prototype = Prototype.find(params[:id])
+    if @prototype.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path
     end
   end
 
